@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conquer Kingdoms - Free Online Strategy Game | Build Your Empire</title>
+    <meta name="description" content="Play Conquer Kingdoms free online. Command your king and soldiers, explore lands, defeat enemies, and build a mighty kingdom in this epic 3D strategy game.">
+    <meta name="keywords" content="Conquer Kingdoms, strategy game, kingdom building, online game, free game, browser game">
+    <link rel="canonical" href="https://conquerkingdoms.xyz">
+    <meta property="og:title" content="Conquer Kingdoms - Free Online Strategy Game">
+    <meta property="og:description" content="Command your king and soldiers, explore lands, defeat enemies, and build a mighty kingdom.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://conquerkingdoms.xyz">
+    <link rel="preconnect" href="https://cloud.onlinegames.io">
+    <style>
+        :root {
+            --gold: #d4a857;
+            --gold-dark: #b8860b;
+            --brown: #4a3728;
+            --brown-light: #6b5344;
+            --cream: #f5f0e6;
+            --dark: #2c1810;
+            --shadow: rgba(44, 24, 16, 0.4);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(180deg, var(--dark) 0%, #1a0f0a 100%);
+            color: var(--cream);
+            min-height: 100vh;
+        }
+        .banner {
+            background: linear-gradient(90deg, var(--brown) 0%, var(--gold-dark) 50%, var(--brown) 100%);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            border-bottom: 3px solid var(--gold);
+        }
+        .banner h1 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cream);
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+        .crown { font-size: 1.5rem; }
+        .main-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .game-section { min-width: 0; }
+        .game-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 66.67%;
+            background: var(--brown);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px var(--shadow), inset 0 0 0 2px var(--gold-dark);
+        }
+        .game-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .fullscreen-btn {
+            display: block;
+            margin: 16px auto 0;
+            padding: 12px 32px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border: none;
+            border-radius: 6px;
+            color: var(--dark);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .fullscreen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(212, 168, 87, 0.4);
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background: linear-gradient(135deg, var(--brown) 0%, var(--brown-light) 100%);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--gold-dark);
+        }
+        .card-title {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--gold-dark);
+        }
+        .controls-list {
+            list-style: none;
+        }
+        .controls-list li {
+            padding: 8px 0;
+            border-bottom: 1px dotted rgba(212, 168, 87, 0.3);
+            display: flex;
+            justify-content: space-between;
+        }
+        .controls-list li:last-child { border-bottom: none; }
+        .key {
+            background: var(--dark);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid var(--gold-dark);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+        }
+        .stat-value {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+        .stat-label { font-size: 0.8rem; opacity: 0.8; }
+        .article-section {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+        .article-content {
+            background: var(--brown);
+            border-radius: 8px;
+            padding: 32px;
+            border: 1px solid var(--gold-dark);
+        }
+        .article-content h2 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin: 24px 0 12px;
+            font-weight: normal;
+        }
+        .article-content h2:first-child { margin-top: 0; }
+        .article-content p {
+            line-height: 1.9;
+            margin-bottom: 16px;
+            color: #ddd;
+        }
+        .faq-section { margin-top: 24px; }
+        .faq-item {
+            border-bottom: 1px solid var(--gold-dark);
+        }
+        .faq-question {
+            width: 100%;
+            padding: 16px 0;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-family: inherit;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.4rem;
+            transition: transform 0.3s;
+        }
+        .faq-question.active::after { transform: rotate(45deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-answer p {
+            padding-bottom: 16px;
+            margin-bottom: 0;
+        }
+        .page-footer {
+            text-align: center;
+            padding: 32px;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--brown);
+            margin-top: 40px;
+        }
+        @media (max-width: 900px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .card { flex: 1; min-width: 250px; }
+            .banner h1 { font-size: 1.4rem; }
+        }
+        @media (max-width: 600px) {
+            .main-wrapper { padding: 16px; }
+            .game-wrapper { padding-bottom: 75%; }
+            .sidebar { flex-direction: column; }
+            .card { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="banner">
+        <span class="crown">&#9813;</span>
+        <h1>Conquer Kingdoms</h1>
+        <span class="crown">&#9813;</span>
+    </header>
+
+    <main class="main-wrapper">
+        <section class="game-section">
+            <div class="game-wrapper">
+                <iframe
+                    id="gameFrame"
+                    src="https://cloud.onlinegames.io/games/2025/unity/conquer-kingdoms/index-og.html"
+                    allowfullscreen
+                    loading="lazy"
+                    title="Conquer Kingdoms Game">
+                </iframe>
+            </div>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()">Enter Fullscreen</button>
+        </section>
+
+        <aside class="sidebar">
+            <div class="card">
+                <h3 class="card-title">Game Controls</h3>
+                <ul class="controls-list">
+                    <li><span>Move Troops</span><span class="key">WASD</span></li>
+                    <li><span>Alternative Move</span><span class="key">Arrows</span></li>
+                    <li><span>Thunder Strike</span><span class="key">Space</span></li>
+                    <li><span>Zoom View</span><span class="key">Scroll</span></li>
+                    <li><span>Select Units</span><span class="key">Click</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Game Stats</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Starting Soldiers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">3D</span>
+                        <span class="stat-label">Graphics</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">Free</span>
+                        <span class="stat-label">To Play</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">Unity</span>
+                        <span class="stat-label">Engine</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article class="article-section">
+            <div class="article-content">
+                <h2>What is Conquer Kingdoms?</h2>
+                <p>Conquer Kingdoms is an immersive 3D strategy game where you take command of a brave king accompanied by five loyal soldiers. Your mission is to explore uncharted territories, engage enemy forces dressed in crimson armor, and collect valuable treasures to expand your growing empire. Every victory brings new resources, allowing you to strengthen your army and upgrade your kingdom's defenses.</p>
+
+                <h2>Building Your Kingdom</h2>
+                <p>Success in Conquer Kingdoms requires strategic thinking. Your castle serves as the heart of your empire, where wounded soldiers can recover and new upgrades become available. The Forge allows you to craft superior weapons and armor, while also recruiting additional soldiers for your expanding army. Manage your resources wisely between offensive expeditions and defensive preparations.</p>
+
+                <h2>Divine Powers</h2>
+                <p>Keep watch on the Temple's energy meter as it slowly fills during battle. Once fully charged, visit the Temple to receive a blessing from the gods. This grants you the devastating ability to call down lightning strikes upon your enemies, turning the tide of even the most challenging battles. Use this power strategically to overcome heavily defended enemy positions.</p>
+
+                <h2>Tips for New Players</h2>
+                <p>Begin by exploring nearby territories to gather initial resources before venturing into more dangerous regions. Balance your soldier allocation between combat and treasure collection. Upgrade your castle early to unlock advanced features and increase your soldier capacity. Remember that retreat is sometimes the wisest strategy when facing overwhelming enemy forces.</p>
+
+                <section class="faq-section">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <button class="faq-question">How do I save my progress?</button>
+                        <div class="faq-answer">
+                            <p>Conquer Kingdoms automatically saves your progress in your browser's local storage. Simply continue playing on the same browser to resume where you left off.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I play on mobile devices?</button>
+                        <div class="faq-answer">
+                            <p>Yes, the game supports touch controls on tablets and smartphones. Tap to move troops and use on-screen buttons for special abilities.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Is there a multiplayer mode?</button>
+                        <div class="faq-answer">
+                            <p>Currently, Conquer Kingdoms is a single-player experience focused on strategic conquest and kingdom building.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What happens when all soldiers die?</button>
+                        <div class="faq-answer">
+                            <p>Return to your castle to regenerate fallen soldiers. The castle gradually restores your army, and upgrades can speed up this recovery process.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer class="page-footer">
+        <p>Conquer Kingdoms &copy; 2025. Play free online strategy games.</p>
+    </footer>
+
+    <script>
+        function toggleFullscreen() {
+            const frame = document.getElementById('gameFrame');
+            if (frame.requestFullscreen) {
+                frame.requestFullscreen();
+            } else if (frame.webkitRequestFullscreen) {
+                frame.webkitRequestFullscreen();
+            } else if (frame.msRequestFullscreen) {
+                frame.msRequestFullscreen();
+            }
+        }
+
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const isOpen = btn.classList.contains('active');
+
+                document.querySelectorAll('.faq-question').forEach(b => {
+                    b.classList.remove('active');
+                    b.nextElementSibling.style.maxHeight = null;
+                });
+
+                if (!isOpen) {
+                    btn.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
